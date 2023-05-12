@@ -1,4 +1,5 @@
-﻿using STGeneticsProject.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using STGeneticsProject.Database;
 using STGeneticsProject.Interfaces;
 using STGeneticsProject.Models.Entities;
 
@@ -11,6 +12,12 @@ namespace STGeneticsProject.Services
         public AnimalService(STGeneticsDBContext context)
         {
             this._context = context;
+        }
+
+        public Animal GetAnimalById(Guid animalId)
+        {
+            var animal = this._context.Animals.Where(x => x.AnimalId == animalId && x.DeleteDate == null).FirstOrDefault();
+            return animal;
         }
 
         public bool CreateAnimal(Animal request)
@@ -55,6 +62,27 @@ namespace STGeneticsProject.Services
 
             animal.DeleteDate = DateTime.UtcNow;
             return true;
+        }
+
+        public List<Animal> GetAnimalsByFilter(string? animalId, string? name, string? sex, string? status)
+        {
+            var listOfParameters = new Dictionary<string, object>();
+
+            if (!string.IsNullOrEmpty(animalId))
+                listOfParameters.Add("animalId", animalId);
+
+            if (!string.IsNullOrEmpty(name))
+                listOfParameters.Add("name", name);
+
+            if (!string.IsNullOrEmpty(sex))
+                listOfParameters.Add("sex", sex);
+
+            if (!string.IsNullOrEmpty(status))
+                listOfParameters.Add("status", status);
+
+            var listOfResults = Database.Helpers.StoredProcedureHelper.ExecuteStoredProcedure<Animal>("[dbo].[GetAnimalsByFilter]", listOfParameters, this._context.Database.GetDbConnection());
+
+            return listOfResults;
         }
     }
 }
