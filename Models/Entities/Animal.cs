@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace STGeneticsProject.Models.Entities
 {
     [Table("Animals")]
     public class Animal
     {
+        [Key]
         public Guid AnimalId { get; set; }
         public string Name { get; set; }
         public string Breed { get; set; }

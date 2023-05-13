@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using STGeneticsProject.Interfaces;
 using STGeneticsProject.Models.Entities;
+using STGeneticsProject.Models.Requests;
+using STGeneticsProject.Models.Responses;
 
 namespace STGeneticsProject.Controllers
 {
@@ -10,16 +12,33 @@ namespace STGeneticsProject.Controllers
     {
         IOrderService _orderService;
 
-        public OrderController(IOrderService _orderService)
+        public OrderController(IOrderService orderService)
         {
             this._orderService = orderService;
         }
 
         [HttpPost]
-        [Route("CreateOrder")]
-        public ActionResult<bool> CreateOrder(Order order)
+        [Route("CreateNewOrder")]
+        public ActionResult<Order> CreateNewOrder(Order order)
         {
-            return this._orderService.CreateOrder(order);
+            return this._orderService.CreateNewOrder(order);
         }
+
+        [HttpPost]
+        [Route("AddNewItem")]
+        public ActionResult<ItemDetails> AddNewItem(OrderDetailsRequest request)
+        {
+            return this._orderService.AddNewItem(request);
+        }
+
+        [HttpGet]
+        [Route("GetOrderInformation")]
+        public ActionResult<Order> GetOrderInformation(Guid orderId)
+        {
+            return this._orderService.GetOrderInformation(orderId);
+        }
+        
+
+
     }
 }

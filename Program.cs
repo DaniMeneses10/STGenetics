@@ -17,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<STGeneticsDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient, ServiceLifetime.Transient);
 
 builder.Services.AddTransient<IAnimalService, AnimalService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+
 
 var app = builder.Build();
 

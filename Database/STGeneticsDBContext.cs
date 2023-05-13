@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using STGeneticsProject.Models.Entities;
+using STGeneticsProject.Models.Responses;
 
 namespace STGeneticsProject.Database
 {
@@ -9,5 +10,7 @@ namespace STGeneticsProject.Database
         {
         }
         public DbSet<Animal> Animals { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ItemDetails> OrdersDetails { get; set; }
     }
 }
