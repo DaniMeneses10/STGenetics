@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using STGeneticsProject.Models.Requests;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace STGeneticsProject.Models.Entities
@@ -8,8 +9,10 @@ namespace STGeneticsProject.Models.Entities
     {
         [Key]
         public Guid OrderId { get; set; }
-        public double Total { get; set; }
         public DateTime CreateDate { get; set; }
-        public DateTime DeleteDate { get; set; }
+        public DateTime? DeleteDate { get; set; }        
+        public double TotalPrice { get; set; }
+        public double TotalAnimals { get; set; }
+        public string Error { get; set; }
     }
 }

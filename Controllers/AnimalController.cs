@@ -29,7 +29,7 @@ namespace STGeneticsProject.Controllers
             return this._animalService.CreateAnimal(animal);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateAnimalById")]
         public ActionResult<bool> UpdateAnimalById(Animal animal)
         {

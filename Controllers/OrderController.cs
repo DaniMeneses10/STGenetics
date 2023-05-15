@@ -2,7 +2,6 @@
 using STGeneticsProject.Interfaces;
 using STGeneticsProject.Models.Entities;
 using STGeneticsProject.Models.Requests;
-using STGeneticsProject.Models.Responses;
 
 namespace STGeneticsProject.Controllers
 {
@@ -19,16 +18,9 @@ namespace STGeneticsProject.Controllers
 
         [HttpPost]
         [Route("CreateNewOrder")]
-        public ActionResult<Order> CreateNewOrder(Order order)
+        public ActionResult<Order> CreateNewOrder(NewOrderRequest order)
         {
             return this._orderService.CreateNewOrder(order);
-        }
-
-        [HttpPost]
-        [Route("AddNewItem")]
-        public ActionResult<ItemDetails> AddNewItem(OrderDetailsRequest request)
-        {
-            return this._orderService.AddNewItem(request);
         }
 
         [HttpGet]
@@ -37,8 +29,5 @@ namespace STGeneticsProject.Controllers
         {
             return this._orderService.GetOrderInformation(orderId);
         }
-        
-
-
     }
 }

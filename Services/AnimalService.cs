@@ -43,13 +43,13 @@ namespace STGeneticsProject.Services
         {
             var animal = this._context.Animals.Where(x => x.AnimalId == request.AnimalId && x.DeleteDate == null).FirstOrDefault();
 
-            animal.Name = animal.Name;
-            animal.Breed = animal.Breed;
-            animal.BirthDate = animal.BirthDate;
-            animal.Sex = animal.Sex;
-            animal.Price = animal.Price;
-            animal.Status = animal.Status;
-            animal.CreateDate = animal.CreateDate;
+            animal.Name = request.Name;
+            animal.Breed = request.Breed;
+            animal.BirthDate = request.BirthDate;
+            animal.Sex = request.Sex;
+            animal.Price = request.Price;
+            animal.Status = request.Status;
+            animal.CreateDate = request.CreateDate;
 
             this._context.SaveChanges();
 
@@ -61,6 +61,7 @@ namespace STGeneticsProject.Services
             var animal = this._context.Animals.Where(x => x.AnimalId == animalId && x.DeleteDate == null).FirstOrDefault();
 
             animal.DeleteDate = DateTime.UtcNow;
+            this._context.SaveChanges();
             return true;
         }
 

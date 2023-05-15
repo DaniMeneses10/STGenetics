@@ -1,9 +1,10 @@
-﻿namespace STGeneticsProject.Models.Requests
+﻿using STGeneticsProject.Models.Entities;
+
+namespace STGeneticsProject.Models.Requests
 {
     public class OrderDetailsRequest
     {        
         public Guid OrderId { get; set; }
-        public Guid AnimalId { get; set; }
-        public int AnimalsAmount { get; set; }                
+        public List<AnimalDetailsRequest> AnimalsList { get; set; }           
     }
 }

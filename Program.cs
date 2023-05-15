@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using STGeneticsProject.Database;
 using STGeneticsProject.Interfaces;
+using STGeneticsProject.Models.Validator;
 using STGeneticsProject.Services;
 using System.Configuration;
 
@@ -18,7 +19,8 @@ builder.Services.AddDbContext<STGeneticsDBContext>(options => options.UseSqlServ
 
 builder.Services.AddTransient<IAnimalService, AnimalService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
-
+builder.Services.AddTransient<IValidatorOrderAnimals, ValidatorOrderAnimals>();
+builder.Services.AddTransient<IOrderAnimalService, OrderAnimalService>();
 
 var app = builder.Build();
 
