@@ -16,6 +16,13 @@ namespace STGeneticsProject.Controllers
         }
 
         [HttpGet]
+        [Route("CreateNAnimals")]
+        public ActionResult<string> CreateNAnimals(int n)
+        {
+            return this._animalService.CreateNAnimals(n);
+        }
+
+        [HttpGet]
         [Route("GetAnimalById")]
         public ActionResult<Animal> GetAnimalById(Guid animalId)
         {

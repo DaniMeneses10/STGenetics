@@ -4,6 +4,7 @@ namespace STGeneticsProject.Interfaces
 {
     public interface IAnimalService
     {
+        string CreateNAnimals(int n);
         Animal GetAnimalById(Guid animalId);
         bool CreateAnimal(Animal animal);
         bool UpdateAnimalById(Animal animal);
